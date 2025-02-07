@@ -1,0 +1,16 @@
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3>CRM Sistemi</h3>
+    </div>
+
+    <ul class="nav flex-column">
+        @for (item of menuItems; track item.route) {
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="item.route" routerLinkActive="active">
+                <i class="bi" [class]="item.icon"></i>
+                {{ item.label }}
+            </a>
+        </li>
+        }
+    </ul>
+</div>
