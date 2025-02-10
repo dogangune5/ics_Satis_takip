@@ -21,6 +21,34 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'opportunities',
+        loadComponent: () =>
+          import('./components/opportunities/opportunities.component').then(
+            (m) => m.OpportunitiesComponent
+          ),
+      },
+      {
+        path: 'proposals',
+        loadComponent: () =>
+          import('./components/proposals/proposals.component').then(
+            (m) => m.ProposalsComponent
+          ),
+      },
+      {
+        path: 'orders',
+        loadComponent: () =>
+          import('./components/orders/orders.component').then(
+            (m) => m.OrdersComponent
+          ),
+      },
+      {
+        path: 'payments',
+        loadComponent: () =>
+          import('./components/payments/payments.component').then(
+            (m) => m.PaymentsComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
