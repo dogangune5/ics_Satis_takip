@@ -48,10 +48,36 @@ export const routes: Routes = [
       },
       {
         path: 'opportunities',
-        loadComponent: () =>
-          import('./components/opportunities/opportunities.component').then(
-            (m) => m.OpportunitiesComponent
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './components/opportunities/opportunity-list/opportunity-list.component'
+              ).then((m) => m.OpportunityListComponent),
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import(
+                './components/opportunities/opportunity-form/opportunity-form.component'
+              ).then((m) => m.OpportunityFormComponent),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import(
+                './components/opportunities/opportunity-form/opportunity-form.component'
+              ).then((m) => m.OpportunityFormComponent),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import(
+                './components/opportunities/opportunity-detail/opportunity-detail.component'
+              ).then((m) => m.OpportunityDetailComponent),
+          },
+        ],
       },
       {
         path: 'proposals',
