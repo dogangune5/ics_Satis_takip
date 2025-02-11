@@ -123,37 +123,29 @@
             <div class="card bg-dark text-light border-secondary h-100">
                 <div class="card-header bg-dark border-secondary d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">Son Müşteriler</h5>
-                    <button class="btn btn-sm btn-outline-primary">Tümünü Gör</button>
+                    <button class="btn btn-sm btn-outline-primary" routerLink="/customers">Tümünü Gör</button>
                 </div>
                 <div class="card-body p-0">
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item bg-dark text-light border-secondary">
+                        @for (customer of recentCustomers; track customer.id) {
+                        <a [routerLink]="['/customers', customer.id]"
+                            class="list-group-item bg-dark text-light border-secondary">
                             <div class="d-flex w-100 justify-content-between align-items-center">
                                 <div>
-                                    <h6 class="mb-1">Ahmet Yılmaz</h6>
-                                    <small class="text-muted">Teknoloji Ltd.</small>
+                                    <h6 class="mb-1">{{ customer.name }}</h6>
+                                    <small class="text-muted">{{ customer.company }}</small>
                                 </div>
-                                <span class="badge bg-success">Yeni</span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge" [ngClass]="getLeadTypeBadgeClass(customer.leadType)">
+                                        {{ customer.leadType }}
+                                    </span>
+                                    <span class="badge" [ngClass]="getStatusBadgeClass(customer.status)">
+                                        {{ customer.status }}
+                                    </span>
+                                </div>
                             </div>
                         </a>
-                        <a href="#" class="list-group-item bg-dark text-light border-secondary">
-                            <div class="d-flex w-100 justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="mb-1">Ayşe Demir</h6>
-                                    <small class="text-muted">Demir İnşaat</small>
-                                </div>
-                                <span class="badge bg-success">Yeni</span>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item bg-dark text-light border-secondary">
-                            <div class="d-flex w-100 justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="mb-1">Mehmet Kaya</h6>
-                                    <small class="text-muted">Kaya Holding</small>
-                                </div>
-                                <span class="badge bg-warning">Beklemede</span>
-                            </div>
-                        </a>
+                        }
                     </div>
                 </div>
             </div>

@@ -6,7 +6,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
+import {
+  Customer,
+  LeadType,
+  CustomerStatus,
+} from '../../interfaces/customer.interface';
 
 Chart.register(...registerables);
 
@@ -18,13 +24,53 @@ interface SalesData {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('salesChart') salesChartCanvas!: ElementRef<HTMLCanvasElement>;
   salesChart: Chart | undefined;
+
+  // Son müşteriler listesi
+  recentCustomers: Customer[] = [
+    {
+      id: 1,
+      customerNumber: 'CUS001',
+      leadType: 'Kurumsal',
+      name: 'Ahmet Yılmaz',
+      company: 'Teknoloji Ltd.',
+      status: 'Aktif',
+      contacts: [],
+      addresses: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: 2,
+      customerNumber: 'CUS002',
+      leadType: 'Bireysel',
+      name: 'Ayşe Demir',
+      company: 'Demir İnşaat',
+      status: 'Potansiyel',
+      contacts: [],
+      addresses: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: 3,
+      customerNumber: 'CUS003',
+      leadType: 'Kurumsal',
+      name: 'Mehmet Kaya',
+      company: 'Kaya Holding',
+      status: 'Aktif',
+      contacts: [],
+      addresses: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ];
 
   // Örnek veri
   salesData: SalesData[] = [
@@ -42,6 +88,32 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initSalesChart();
+  }
+
+  // Müşteri tipi badge sınıfı
+  getLeadTypeBadgeClass(leadType: LeadType): string {
+    switch (leadType) {
+      case 'Kurumsal':
+        return 'bg-info';
+      case 'Bireysel':
+        return 'bg-success';
+      default:
+        return 'bg-secondary';
+    }
+  }
+
+  // Durum badge sınıfı
+  getStatusBadgeClass(status: CustomerStatus): string {
+    switch (status) {
+      case 'Aktif':
+        return 'bg-success';
+      case 'Pasif':
+        return 'bg-danger';
+      case 'Potansiyel':
+        return 'bg-warning';
+      default:
+        return 'bg-secondary';
+    }
   }
 
   private initSalesChart(): void {

@@ -15,10 +15,36 @@ export const routes: Routes = [
       },
       {
         path: 'customers',
-        loadComponent: () =>
-          import('./components/customer-list/customer-list.component').then(
-            (m) => m.CustomerListComponent
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./components/customer-list/customer-list.component').then(
+                (m) => m.CustomerListComponent
+              ),
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import('./components/customer-form/customer-form.component').then(
+                (m) => m.CustomerFormComponent
+              ),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import('./components/customer-form/customer-form.component').then(
+                (m) => m.CustomerFormComponent
+              ),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import(
+                './components/customer-detail/customer-detail.component'
+              ).then((m) => m.CustomerDetailComponent),
+          },
+        ],
       },
       {
         path: 'opportunities',
