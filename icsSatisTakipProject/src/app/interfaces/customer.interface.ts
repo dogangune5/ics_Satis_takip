@@ -2,27 +2,6 @@
 export type CustomerStatus = 'Aktif' | 'Pasif' | 'Potansiyel';
 export type LeadType = 'Bireysel' | 'Kurumsal';
 export type ContactType = 'Telefon' | 'Email' | 'Yüz Yüze';
-export type OpportunityStatus =
-  | 'Yeni'
-  | 'Görüşülüyor'
-  | 'Teklif Aşamasında'
-  | 'Kazanıldı'
-  | 'Kaybedildi';
-
-// Fırsat arayüzü
-export interface Opportunity {
-  id: number;
-  customerId: number;
-  title: string;
-  description: string;
-  value: number;
-  probability: number;
-  status: OpportunityStatus;
-  expectedCloseDate: Date;
-  notes?: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 // Müşteri iletişim bilgileri
 export interface CustomerContact {
@@ -36,7 +15,7 @@ export interface CustomerContact {
 // Müşteri adresi
 export interface CustomerAddress {
   id: number;
-  type: string; // Ev, İş, vb.
+  type: string;
   country: string;
   city: string;
   district?: string;

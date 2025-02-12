@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import {
   Opportunity,
   OpportunityStatus,
-} from '../../../interfaces/customer.interface';
+} from '../../../interfaces/opportunity.interface';
 
 @Component({
   selector: 'app-opportunity-detail',

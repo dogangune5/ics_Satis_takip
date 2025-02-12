@@ -10,7 +10,7 @@ import {
 import {
   Opportunity,
   OpportunityStatus,
-} from '../../../interfaces/customer.interface';
+} from '../../../interfaces/opportunity.interface';
 
 @Component({
   selector: 'app-opportunity-form',

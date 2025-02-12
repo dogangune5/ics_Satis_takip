@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import {
   Opportunity,
   OpportunityStatus,
-} from '../../../interfaces/customer.interface';
+} from '../../../interfaces/opportunity.interface';
 
 @Component({
   selector: 'app-opportunity-list',

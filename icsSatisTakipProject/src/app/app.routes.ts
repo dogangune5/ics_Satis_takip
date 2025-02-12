@@ -81,10 +81,36 @@ export const routes: Routes = [
       },
       {
         path: 'proposals',
-        loadComponent: () =>
-          import('./components/proposals/proposals.component').then(
-            (m) => m.ProposalsComponent
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './components/proposals/proposal-list/proposal-list.component'
+              ).then((m) => m.ProposalListComponent),
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import(
+                './components/proposals/proposal-form/proposal-form.component'
+              ).then((m) => m.ProposalFormComponent),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import(
+                './components/proposals/proposal-form/proposal-form.component'
+              ).then((m) => m.ProposalFormComponent),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import(
+                './components/proposals/proposal-detail/proposal-detail.component'
+              ).then((m) => m.ProposalDetailComponent),
+          },
+        ],
       },
       {
         path: 'orders',

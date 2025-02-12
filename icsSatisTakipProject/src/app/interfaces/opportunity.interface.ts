@@ -1,11 +1,43 @@
+export type OpportunityStatus =
+  | 'Yeni'
+  | 'Görüşülüyor'
+  | 'Teklif Aşamasında'
+  | 'Kazanıldı'
+  | 'Kaybedildi';
+
 export interface Opportunity {
-  id: number; // Fırsat numarası (Primary Key)
-  dateEntered: Date; // Fırsatın giriş tarihi
-  description: string; // Fırsat açıklaması
-  potentialSalesAmount: number; // Potansiyel satış tutarı
-  probability: number; // Sipariş olasılığı (%)
-  systemTypeCode: string; // Sistem tipi kodu (FK)
-  oppStatusCode: string; // Fırsat durumu kodu (FK)
-  currencyCode: string; // Para birimi kodu (FK)
-  oppObtainedCode: string; // Fırsat elde etme kaynağı (FK)
+  id: number;
+  customerId: number;
+  title: string;
+  description: string;
+  value: number;
+  probability: number;
+  status: OpportunityStatus;
+  expectedCloseDate: Date;
+  notes?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface OpportunityFilter {
+  searchTerm?: string;
+  status?: OpportunityStatus;
+  customerId?: number;
+  startDate?: Date;
+  endDate?: Date;
+  minValue?: number;
+  maxValue?: number;
+  minProbability?: number;
+  maxProbability?: number;
+  sortBy?: keyof Opportunity;
+  sortDirection?: 'asc' | 'desc';
+  page?: number;
+  pageSize?: number;
+}
+
+export interface OpportunityPagination {
+  currentPage: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
 }
