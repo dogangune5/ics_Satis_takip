@@ -147,10 +147,36 @@ export const routes: Routes = [
       },
       {
         path: 'payments',
-        loadComponent: () =>
-          import('./components/payments/payments.component').then(
-            (m) => m.PaymentsComponent
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './components/payments/payment-list/payment-list.component'
+              ).then((m) => m.PaymentListComponent),
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import(
+                './components/payments/payment-form/payment-form.component'
+              ).then((m) => m.PaymentFormComponent),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import(
+                './components/payments/payment-form/payment-form.component'
+              ).then((m) => m.PaymentFormComponent),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import(
+                './components/payments/payment-detail/payment-detail.component'
+              ).then((m) => m.PaymentDetailComponent),
+          },
+        ],
       },
       {
         path: '',
