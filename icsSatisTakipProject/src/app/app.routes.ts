@@ -114,10 +114,36 @@ export const routes: Routes = [
       },
       {
         path: 'orders',
-        loadComponent: () =>
-          import('./components/orders/orders.component').then(
-            (m) => m.OrdersComponent
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './components/orders/order-list/order-list.component'
+              ).then((m) => m.OrderListComponent),
+          },
+          {
+            path: 'new',
+            loadComponent: () =>
+              import(
+                './components/orders/order-form/order-form.component'
+              ).then((m) => m.OrderFormComponent),
+          },
+          {
+            path: 'edit/:id',
+            loadComponent: () =>
+              import(
+                './components/orders/order-form/order-form.component'
+              ).then((m) => m.OrderFormComponent),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import(
+                './components/orders/order-detail/order-detail.component'
+              ).then((m) => m.OrderDetailComponent),
+          },
+        ],
       },
       {
         path: 'payments',
